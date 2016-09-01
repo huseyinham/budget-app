@@ -1,0 +1,57 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.flywaydb:flyway-gradle-plugin:4.0'
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.4'
+    }
+
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.flywaydb.flyway'
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.tomcat'
+
+repositories {
+    mavenCentral()
+    maven { url "http://central.maven.org/maven2" }
+}
+
+dependencies {
+    compile 'org.springframework:spring-jdbc:4.2.2.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.2.2.RELEASE'
+    compile 'javax.servlet:jstl:1.2'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile 'mysql:mysql-connector-java:5.1.37'
+    compile 'com.h2database:h2:1.3.148'
+    testCompile 'junit:junit:4.11'
+    testCompile 'org.mockito:mockito-all:1.9.5'
+    tomcat 'org.apache.tomcat:tomcat-catalina:7.0.59'
+    tomcat 'org.apache.tomcat:tomcat-coyote:7.0.59'
+    tomcat 'org.apache.tomcat:tomcat-jasper:7.0.59'
+}
+
+Properties jdbcProperties = new Properties()
+jdbcProperties.load(new FileInputStream('src/main/resources/jdbc.properties'))
+
+flyway {
+    url = jdbcProperties.getProperty('jdbc.url')
+    user = jdbcProperties.getProperty('jdbc.username')
+    password = jdbcProperties.getProperty('jdbc.password')
+}
+
+task startTomcat(type: com.bmuschko.gradle.tomcat.tasks.TomcatRunWar) {
+    daemon = false
+}
+
+
+task startWebApp {
+    dependsOn clean, build, flywayMigrate, startTomcat
+    build.mustRunAfter clean
+    startTomcat.mustRunAfter flywayMigrate
+}
