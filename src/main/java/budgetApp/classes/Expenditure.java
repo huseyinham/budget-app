@@ -1,6 +1,6 @@
 package budgetApp.classes;
 
-public class Expenditure {
+public class Expenditure implements Transaction {
 
     private double value;
 
@@ -8,7 +8,9 @@ public class Expenditure {
         this.value = value;
     }
 
+    @Override
     public double getValue() {
+        //value *-1 makes it negative
         return value;
     }
 }

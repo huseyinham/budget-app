@@ -1,6 +1,6 @@
 package budgetApp.classes;
 
-public class Income {
+public class Income implements Transaction {
 
     private double value;
 
@@ -8,6 +8,7 @@ public class Income {
           this.value = value;
     }
 
+    @Override
     public double getValue() {
         return value;
     }

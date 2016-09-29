@@ -7,8 +7,7 @@ public class Account {
 
     List<Income> incomeItems = new ArrayList<>();
     List<Expenditure> expenditureItems = new ArrayList<>();
-
-    private double balance = 0;
+    List<Transaction> transactionItems = new ArrayList<>();
 
     public double getBalance() {
         double balance = 0;
@@ -21,13 +20,30 @@ public class Account {
         return balance;
     }
 
+    //Pass transaction into add &  subtract to allow removal of duplicate Lists
     public void add(Income income) {
         incomeItems.add(income);
-        balance += income.getValue();
+        transactionItems.add(income);
     }
 
     public void subtract(Expenditure expenditure) {
         expenditureItems.add(expenditure);
-        balance -= expenditure.getValue();
+        transactionItems.add(expenditure);
+    }
+
+    public Income getIncome(int i) {
+        return incomeItems.get(i);
+    }
+
+    public List<Income> getIncomeItems() {
+        return incomeItems;
+    }
+
+    public List<Expenditure> getExpenditureItems() {
+        return expenditureItems;
+    }
+
+    public List<Transaction> getTransactionItems() {
+        return transactionItems;
     }
 }

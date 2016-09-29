@@ -4,29 +4,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class AccountTest {
-
-    /*private Account account;
-
-    @Before
-    public void setup() {
-        account = new Account(50, 29.99);
-    }
-
-    @Test
-    public void testGetIncome() {
-        Assert.assertEquals(50.0, account.getIncome(), 0);
-    }
-
-    @Test
-    public void testGetExpenditure() {
-        Assert.assertEquals(29.99, account.getExpenditure(), 0);
-    }
-
-    @Test
-    public void testGetBalance() {
-        Assert.assertEquals(20.01, account.getBalance(), 0);
-    }*/
 
     private Account account = new Account();
 
@@ -47,10 +28,44 @@ public class AccountTest {
         Assert.assertEquals(-100, account.getBalance(), 0);
     }
 
-    /*@Test
+    @Test
     public void accountShouldReturnAllIncomeItems() {
-        account.add(new Income(100));
-        account.add(new Income(200));
-        List<Income> incomeItems = account.getIncomeItems();
-    }*/
+        Income salary = new Income(100);
+        Income bonus = new Income(50);
+        account.add(salary);
+        account.add(bonus);
+        Assert.assertEquals(salary, account.getIncome(0));
+        Assert.assertEquals(bonus, account.getIncome(1));
+    }
+
+    @Test
+    public void accountShouldReturnAllExpenditureItems() {
+        Expenditure clothes = new Expenditure(500);
+        Expenditure food = new Expenditure(100);
+        account.subtract(clothes);
+        account.subtract(food);
+        // Encapsulation
+        List<Expenditure> actualExpenditureItems = account.getExpenditureItems();
+        Assert.assertEquals(clothes, actualExpenditureItems.get(0));
+        Assert.assertEquals(food, actualExpenditureItems.get(1));
+        actualExpenditureItems.add(new Expenditure(3));
+    }
+
+    @Test
+    public void accountShouldReturnAllIncomesAndExpendituresInOneOrderedList() {
+        Income salary = new Income(100);
+        Income bonus = new Income(50);
+        Expenditure clothes = new Expenditure(500);
+        Expenditure food = new Expenditure(100);
+        account.add(salary);
+        account.subtract(clothes);
+        account.add(bonus);
+        account.subtract(food);
+        // Immutable List http://stackoverflow.com/questions/7713274/java-immutable-collections
+        List<Transaction> actualTransactionItems = account.getTransactionItems();
+        Assert.assertEquals(salary, actualTransactionItems.get(0));
+        Assert.assertEquals(clothes, actualTransactionItems.get(1));
+        Assert.assertEquals(bonus, actualTransactionItems.get(2));
+        Assert.assertEquals(food, actualTransactionItems.get(3));
+    }
 }

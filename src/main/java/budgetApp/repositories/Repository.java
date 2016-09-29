@@ -9,12 +9,6 @@ import javax.sql.DataSource;
 
 public class Repository {
 
-/*
-    public Account getAccount() {
-        return new Account();
 
-        getIncomeItems();
-        getExpenditureItems();
-    }*/
 
 }
