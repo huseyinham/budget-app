@@ -44,11 +44,8 @@ public class AccountTest {
         Expenditure food = new Expenditure(100);
         account.subtract(clothes);
         account.subtract(food);
-        // Encapsulation
-        List<Expenditure> actualExpenditureItems = account.getExpenditureItems();
-        Assert.assertEquals(clothes, actualExpenditureItems.get(0));
-        Assert.assertEquals(food, actualExpenditureItems.get(1));
-        actualExpenditureItems.add(new Expenditure(3));
+        Assert.assertEquals(clothes, account.getExpenditure(0));
+        Assert.assertEquals(food, account.getExpenditure(1));
     }
 
     @Test

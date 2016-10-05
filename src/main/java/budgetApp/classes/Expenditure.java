@@ -11,6 +11,6 @@ public class Expenditure implements Transaction {
     @Override
     public double getValue() {
         //value *-1 makes it negative
-        return value;
+        return value*-1;
     }
 }

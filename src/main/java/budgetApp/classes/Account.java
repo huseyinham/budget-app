@@ -11,36 +11,27 @@ public class Account {
 
     public double getBalance() {
         double balance = 0;
-        for (Income income : incomeItems) {
-            balance += income.getValue();
-        }
-        for (Expenditure expenditure : expenditureItems) {
-            balance -= expenditure.getValue();
+        for (Transaction transaction : transactionItems) {
+            balance += transaction.getValue();
         }
         return balance;
     }
 
     //Pass transaction into add &  subtract to allow removal of duplicate Lists
-    public void add(Income income) {
-        incomeItems.add(income);
-        transactionItems.add(income);
+    public void add(Transaction transaction) {
+        transactionItems.add(transaction);
     }
 
-    public void subtract(Expenditure expenditure) {
-        expenditureItems.add(expenditure);
-        transactionItems.add(expenditure);
+    public void subtract(Transaction transaction) {
+        transactionItems.add(transaction);
     }
 
-    public Income getIncome(int i) {
-        return incomeItems.get(i);
+    public Transaction getIncome(int i) {
+        return transactionItems.get(i);
     }
 
-    public List<Income> getIncomeItems() {
-        return incomeItems;
-    }
-
-    public List<Expenditure> getExpenditureItems() {
-        return expenditureItems;
+    public Transaction getExpenditure(int i){
+        return transactionItems.get(i);
     }
 
     public List<Transaction> getTransactionItems() {
