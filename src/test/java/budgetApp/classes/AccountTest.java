@@ -1,15 +1,19 @@
 package budgetApp.classes;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountTest {
 
     private Account account = new Account();
+
+    private Income salary = new Income(100);
+    private Expenditure clothes = new Expenditure(500);
+    private Income bonus = new Income(50);
+    private Expenditure food = new Expenditure(100);
 
     @Test
     public void shouldHaveStartBalanceOfZero() {
@@ -18,51 +22,73 @@ public class AccountTest {
 
     @Test
     public void addingIncomeShouldIncreaseBalance() {
-        account.add(new Income(100));
+        account.addTransaction(salary);
         Assert.assertEquals(100, account.getBalance(), 0);
     }
 
     @Test
-    public void subtractingExpenditureShouldDecreaseBalance() {
-        account.subtract(new Expenditure(100));
-        Assert.assertEquals(-100, account.getBalance(), 0);
+    public void addingExpenditureShouldDecreaseBalance() {
+        account.addTransaction(clothes);
+        Assert.assertEquals(-500, account.getBalance(), 0);
     }
 
     @Test
-    public void accountShouldReturnAllIncomeItems() {
-        Income salary = new Income(100);
-        Income bonus = new Income(50);
-        account.add(salary);
-        account.add(bonus);
-        Assert.assertEquals(salary, account.getIncome(0));
-        Assert.assertEquals(bonus, account.getIncome(1));
-    }
-
-    @Test
-    public void accountShouldReturnAllExpenditureItems() {
-        Expenditure clothes = new Expenditure(500);
-        Expenditure food = new Expenditure(100);
-        account.subtract(clothes);
-        account.subtract(food);
-        Assert.assertEquals(clothes, account.getExpenditure(0));
-        Assert.assertEquals(food, account.getExpenditure(1));
+    public void accountShouldReturnAllTransactionItems() {
+        account.addTransaction(salary);
+        account.addTransaction(clothes);
+        Assert.assertEquals(salary, account.getTransaction(0));
+        Assert.assertEquals(clothes, account.getTransaction(1));
     }
 
     @Test
     public void accountShouldReturnAllIncomesAndExpendituresInOneOrderedList() {
-        Income salary = new Income(100);
-        Income bonus = new Income(50);
-        Expenditure clothes = new Expenditure(500);
-        Expenditure food = new Expenditure(100);
-        account.add(salary);
-        account.subtract(clothes);
-        account.add(bonus);
-        account.subtract(food);
-        // Immutable List http://stackoverflow.com/questions/7713274/java-immutable-collections
-        List<Transaction> actualTransactionItems = account.getTransactionItems();
-        Assert.assertEquals(salary, actualTransactionItems.get(0));
-        Assert.assertEquals(clothes, actualTransactionItems.get(1));
-        Assert.assertEquals(bonus, actualTransactionItems.get(2));
-        Assert.assertEquals(food, actualTransactionItems.get(3));
+        account.addTransaction(salary);
+        account.addTransaction(clothes);
+        account.addTransaction(bonus);
+        account.addTransaction(food);
+        Assert.assertEquals(mockedTransactionList(), account.getTransactionItems());
     }
+
+    @Test
+    public void accountShouldReturnAllIncomeItemsOnly() {
+        account.addTransaction(salary);
+        account.addTransaction(clothes);
+        account.addTransaction(bonus);
+        account.addTransaction(food);
+        Assert.assertEquals(mockedIncomeList(), account.getIncomeItems());
+    }
+
+    @Test
+    public void accountShouldReturnAllExpenditureItemsOnly() {
+        account.addTransaction(salary);
+        account.addTransaction(clothes);
+        account.addTransaction(bonus);
+        account.addTransaction(food);
+        Assert.assertEquals(mockedExpenditureList(), account.getExpenditureItems());
+    }
+
+    //Below are refactored methods so we don't have to clog up the above tests
+    private List<Transaction> mockedExpenditureList() {
+        List<Transaction> mockedExpenditureList = new ArrayList<>();
+        mockedExpenditureList.add(clothes);
+        mockedExpenditureList.add(food);
+        return mockedExpenditureList;
+    }
+
+    private List<Transaction> mockedTransactionList(){
+        List<Transaction> mockedTransactionList = new ArrayList<>();
+        mockedTransactionList.add(salary);
+        mockedTransactionList.add(clothes);
+        mockedTransactionList.add(bonus);
+        mockedTransactionList.add(food);
+        return mockedTransactionList;
+    }
+
+    private List<Transaction> mockedIncomeList(){
+        List<Transaction> mockedIncomeList = new ArrayList<>();
+        mockedIncomeList.add(salary);
+        mockedIncomeList.add(bonus);
+        return mockedIncomeList;
+    }
+
 }
