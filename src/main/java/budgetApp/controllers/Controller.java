@@ -9,6 +9,9 @@ public class Controller {
     private Account account;
     private Repository repository;
 
+
+// Similar to the Repository but we should be able to use this to structure our controller .. we'll do the repository first though
+    
    /* public void showStartAccount() {
         account = repository.getAccount();
     }

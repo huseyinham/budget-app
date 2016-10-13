@@ -68,13 +68,7 @@ public class AccountTest {
     }
 
     //Below are refactored methods so we don't have to clog up the above tests
-    private List<Transaction> mockedExpenditureList() {
-        List<Transaction> mockedExpenditureList = new ArrayList<>();
-        mockedExpenditureList.add(clothes);
-        mockedExpenditureList.add(food);
-        return mockedExpenditureList;
-    }
-
+    //This makes an expected Transaction List
     private List<Transaction> mockedTransactionList(){
         List<Transaction> mockedTransactionList = new ArrayList<>();
         mockedTransactionList.add(salary);
@@ -84,6 +78,15 @@ public class AccountTest {
         return mockedTransactionList;
     }
 
+    //This makes an expected Expenditure List
+    private List<Transaction> mockedExpenditureList() {
+        List<Transaction> mockedExpenditureList = new ArrayList<>();
+        mockedExpenditureList.add(clothes);
+        mockedExpenditureList.add(food);
+        return mockedExpenditureList;
+    }
+
+    //This makes an expected Income List
     private List<Transaction> mockedIncomeList(){
         List<Transaction> mockedIncomeList = new ArrayList<>();
         mockedIncomeList.add(salary);

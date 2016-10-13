@@ -27,6 +27,7 @@ public class Account {
         return transactionItems;
     }
 
+    //To get Income Items, we loop over the list of Transactions, if it is an instance of Income, we add it to an income items arraylist
     public List<Transaction> getIncomeItems(){
         List<Transaction> incomeItems = new ArrayList<>();
         for(Transaction transaction : transactionItems){
@@ -37,6 +38,7 @@ public class Account {
         return incomeItems;
     }
 
+    //To get Expenditure Items, we loop over the list of Transactions, if it is an instance of Expenditure, we add it to an expenditure items arraylist
     public List<Transaction> getExpenditureItems() {
         List<Transaction> expenditureItems = new ArrayList<>();
         for(Transaction transaction : transactionItems){

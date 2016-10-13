@@ -14,6 +14,12 @@ public class Repository {
 
     private Map<Integer, Account> accounts = new HashMap<>();
 
+
+
+
+// The below was Mike showing me how to mock it out if you didn't have a database ... ours will be full of SQL statements (similar to your pokemon
+// one) as we have a database
+
 /*
     private Account account = new Account();
 
