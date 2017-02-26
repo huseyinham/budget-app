@@ -2,6 +2,7 @@ package budgetApp.classes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Account {
 
@@ -14,6 +15,10 @@ public class Account {
         }
         return balance;
     }
+
+//    public Integer getId() {
+//        return 0;
+//    }
 
     public void addTransaction(Transaction transaction) {
         transactionItems.add(transaction);
@@ -29,23 +34,13 @@ public class Account {
 
     //To get Income Items, we loop over the list of Transactions, if it is an instance of Income, we add it to an income items arraylist
     public List<Transaction> getIncomeItems(){
-        List<Transaction> incomeItems = new ArrayList<>();
-        for(Transaction transaction : transactionItems){
-            if(transaction instanceof Income){
-                incomeItems.add(transaction);
-            }
-        }
+        List<Transaction> incomeItems = transactionItems.stream().filter(transaction -> transaction instanceof Income).collect(Collectors.toList());
         return incomeItems;
     }
 
     //To get Expenditure Items, we loop over the list of Transactions, if it is an instance of Expenditure, we add it to an expenditure items arraylist
     public List<Transaction> getExpenditureItems() {
-        List<Transaction> expenditureItems = new ArrayList<>();
-        for(Transaction transaction : transactionItems){
-            if(transaction instanceof Expenditure){
-                expenditureItems.add(transaction);
-            }
-        }
+        List<Transaction> expenditureItems = transactionItems.stream().filter(transaction -> transaction instanceof Expenditure).collect(Collectors.toList());
         return expenditureItems;
     }
 }

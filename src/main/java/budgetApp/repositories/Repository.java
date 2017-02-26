@@ -13,27 +13,24 @@ import java.util.Map;
 public class Repository {
 
     private Map<Integer, Account> accounts = new HashMap<>();
-
-
-
-
-// The below was Mike showing me how to mock it out if you didn't have a database ... ours will be full of SQL statements (similar to your pokemon
-// one) as we have a database
-
-/*
     private Account account = new Account();
 
+// Mocked out for now as no database
+
     public Account getAccount() {
+        //Select statement in here eventually
         return account;
     }
 
-    public void save(Account account) {
-        accounts.put(account.getId(), account);
-    }
+//    public void save(Account account) {
+//        //Update (?) statement here
+//        accounts.put(account.getId(), account);
+//    }
 
     public Account getAccount(int id) {
+        //Get account by id ?
         return accounts.get(id);
-    }*/
+    }
 
 
 

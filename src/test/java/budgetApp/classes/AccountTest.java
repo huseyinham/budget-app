@@ -10,10 +10,10 @@ public class AccountTest {
 
     private Account account = new Account();
 
-    private Income salary = new Income(100);
-    private Expenditure clothes = new Expenditure(500);
-    private Income bonus = new Income(50);
-    private Expenditure food = new Expenditure(100);
+    private Income salary = new Income(100, "salary");
+    private Expenditure clothes = new Expenditure(500, "clothes");
+    private Income bonus = new Income(50, "bonus");
+    private Expenditure food = new Expenditure(100, "food");
 
     @Test
     public void shouldHaveStartBalanceOfZero() {
@@ -66,6 +66,11 @@ public class AccountTest {
         account.addTransaction(food);
         Assert.assertEquals(mockedExpenditureList(), account.getExpenditureItems());
     }
+
+//    @Test
+//    public void shouldGetAccountsBasedOnId(){
+//        account.getId();
+//    }
 
     //Below are refactored methods so we don't have to clog up the above tests
     //This makes an expected Transaction List
