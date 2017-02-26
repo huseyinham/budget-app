@@ -48,15 +48,15 @@ public class Account {
         return getTransaction(i).getAccountId();
     }
 
-    public void addTransaction(Transaction transaction) {
-        transactionItems.add(transaction);
+    public List<Transaction> getTransactionItems() {
+        return transactionItems;
     }
 
     public Transaction getTransaction(int i) {
         return transactionItems.get(i);
     }
 
-    public List<Transaction> getTransactionItems() {
-        return transactionItems;
+    public void addTransaction(Transaction transaction) {
+        transactionItems.add(transaction);
     }
 }
