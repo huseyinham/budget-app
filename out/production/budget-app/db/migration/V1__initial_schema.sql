@@ -8,7 +8,7 @@ CREATE TABLE if NOT EXISTS income (
     id INT NOT NULL,
     type INT NOT NULL,
     description VARCHAR(255) NOT NULL,
-    amount INT NOT NULL,
+    amount DECIMAL(13,4) NOT NULL,
     account_id INT NOT NULL,
 
     PRIMARY KEY (id),
@@ -19,7 +19,7 @@ CREATE TABLE if NOT EXISTS expenditure (
     id INT NOT NULL,
     type INT NOT NULL,
     description VARCHAR(255) NOT NULL,
-    amount INT NOT NULL,
+    amount DECIMAL(13,4) NOT NULL,
     account_id INT NOT NULL,
 
     PRIMARY KEY (id),

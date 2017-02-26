@@ -6,7 +6,12 @@ import java.util.stream.Collectors;
 
 public class Account {
 
+    private int id;
     private List<Transaction> transactionItems = new ArrayList<>();
+
+    public Account(int id){
+        this.id = id;
+    }
 
     public double getBalance() {
         double balance = 0;
@@ -22,7 +27,6 @@ public class Account {
         return incomeItems;
     }
 
-    //To get Expenditure Items, we loop over the list of Transactions, if it is an instance of Expenditure, we add it to an expenditure items arraylist
     public List<Transaction> getExpenditureItems() {
         List<Transaction> expenditureItems = transactionItems.stream().filter(transaction -> transaction instanceof Expenditure).collect(Collectors.toList());
         return expenditureItems;

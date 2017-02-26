@@ -9,7 +9,7 @@ public class Income implements Transaction {
     private int accountId;
 
 
-    public Income(int id, String type, String description, int amount, int accountId) {
+    public Income(int id, String type, String description, double amount, int accountId) {
         this.id = id;
         this.type = type;
         this.description = description;
