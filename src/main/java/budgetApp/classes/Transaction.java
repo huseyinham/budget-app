@@ -13,7 +13,10 @@ package budgetApp.classes;
 
 public interface Transaction {
 
-    double getValue();
+    int getId();
+    String getType();
     String getDescription();
+    double getAmount();
+    int getAccountId();
 
 }
