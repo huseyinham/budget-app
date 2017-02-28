@@ -10,6 +10,7 @@ import java.util.List;
 public class AccountTest {
 
     private Account account;
+    private List<Transaction> blankTransactionList = new ArrayList<>();
 
     private Income salary = new Income(1, "paycheck", "salary", 100, 1);
     private Expenditure clothes = new Expenditure(1, "personal", "clothes", 500, 1);
@@ -18,7 +19,7 @@ public class AccountTest {
 
     @Before
     public void setup() {
-        account = new Account();
+        account = new Account(1, blankTransactionList);
     }
 
     @Test

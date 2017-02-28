@@ -16,6 +16,6 @@ public class RepositoryTest {
 
     @Test
     public void checkAccountIsReturnedWithListOfIncomesAndExpenditures(){
-        
+
     }
 }
