@@ -7,10 +7,11 @@ import java.util.stream.Collectors;
 public class Account {
 
     private int id;
-    private List<Transaction> transactionItems = new ArrayList<>();
+    private List<Transaction> transactionItems;
 
-    public Account(int id){
+    public Account(int id, List<Transaction> transactionItems){
         this.id = id;
+        this.transactionItems = transactionItems;
     }
 
     public double getBalance() {
@@ -58,6 +59,11 @@ public class Account {
 
     public Transaction getTransaction(int i) {
         return transactionItems.get(i);
+    }
+
+    public void addTransactions(List<Transaction> transactions) {
+        for (Transaction transaction : transactions)
+            addTransaction(transaction);
     }
 
     public void addTransaction(Transaction transaction) {

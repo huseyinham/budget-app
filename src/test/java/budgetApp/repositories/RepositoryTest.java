@@ -1,7 +1,21 @@
 package budgetApp.repositories;
 
-/**
- * Created by Huseyin on 30-Aug-16.
- */
+import org.junit.Test;
+
 public class RepositoryTest {
+
+    @Test
+    public void checkCanGetListOfIncomes(){
+
+    }
+
+    @Test
+    public void checkCanGetListOfExpenditures(){
+
+    }
+
+    @Test
+    public void checkAccountIsReturnedWithListOfIncomesAndExpenditures(){
+        
+    }
 }

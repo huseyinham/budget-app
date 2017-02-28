@@ -8,7 +8,7 @@ public class Expenditure implements Transaction {
     private double amount;
     private int accountId;
 
-    public Expenditure(int id, String type, String description, int amount, int accountId) {
+    public Expenditure(int id, String type, String description, double amount, int accountId) {
         this.id = id;
         this.type = type;
         this.description = description;
